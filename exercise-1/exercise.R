@@ -48,9 +48,11 @@ worst_hwy <- two_wheel_20_mpg[two_wheel_20_mpg$hwy == min(two_wheel_20_mpg$hwy),
 # and returns the vehicle model that gets the most hwy miles/gallon of vehicles 
 # of that make in that year.
 # You'll need to filter more (and do some selecting)!
-make_year_filter <- function(make_choice, year_choice) {
-  filtered <- vehicles[vehicles$make == make_choice & vehicle$year == year_choice, ]
-  filtered[filtered$hwy == max(filtered$hwy), 'model']
+make_year_filter <- function(make, choice) {
+  filtered <- filter(vehicles, make == make_choice, year == year_choice)
+  filtered <- filter(filtered, hwy == max(hwy))
+  selected <- select(filtered, model)
+  selected
 }
 
 # What was the most efficient Honda model of 1995?
